@@ -1,2 +1,3 @@
-h1. Static
+Static
+======
 The YSI YRI Report Generator
