@@ -8,10 +8,16 @@ Number.prototype.roundToFixed = function (radix) {
     return val;
 };
 
+var Period = {
+    week: 0,
+    month: 1
+};
+
 function Program(name) {
-    var StatGroup = function (name) {
+    var StatGroup = function (name, period) {
         return {
             name: name,
+            id: period,
             totalClosed: 0,
             successfulClosed: 0,
             successRate: '-'
@@ -20,8 +26,8 @@ function Program(name) {
     return {
         name: name,
         data: [
-            StatGroup('week'),
-            StatGroup('month')
+            StatGroup('week', Period.week),
+            StatGroup('month', Period.month)
         ]
     };
 }
@@ -41,12 +47,7 @@ function StaticController($scope) {
         $scope.programs.push(Program(name));
     });
     
-    var totals = Program();
-    
-    $scope.Period = {
-        WEEK: 0,
-        MONTH: 1
-    };
+    $scope.totals = Program();
     
     $scope.calculateRow = function (period) {
         try {
@@ -67,7 +68,7 @@ function StaticController($scope) {
         _($scope.programs).each(function (program) {
             sum += program.data[period].totalClosed;
         });
-        totals.data[period].totalClosed = sum;
+        $scope.totals.data[period].totalClosed = sum;
         return sum;
     };
     
@@ -76,12 +77,7 @@ function StaticController($scope) {
         _($scope.programs).each(function (program) {
             sum += program.data[period].successfulClosed;
         });
-        totals.data[period].successfulClosed = sum;
+        $scope.totals.data[period].successfulClosed = sum;
         return sum;
-    };
-    
-    $scope.sumTotals = function (period) {
-        period = totals.data[period];
-        return $scope.calculateRow(period);
     };
 }
