@@ -50,24 +50,26 @@
                 <div class="span1">{{ calculateRow(period) }}%</div>
             </div>
         </div>
-        <div class="text-right row" ng-repeat="period in totals.data">
-            <div ng-switch on="$index">
-                <div ng-switch-when="0">
-                    <div class="span2 offset2">Totals</div>
-                    <div class="span1 period">{{ period.name }}</div>
-                </div>
-                <div ng-switch-default>
-                    <div class="span1 offset4 period">
-                        {{ period.name }}
+        <div class="well well-small">
+            <div id="summary" class="text-right row" ng-repeat="period in totals.data">
+                <div ng-switch on="$index">
+                    <div ng-switch-when="0">
+                        <div class="span2 offset2">Totals</div>
+                        <div class="span1 period">{{ period.name }}</div>
+                    </div>
+                    <div ng-switch-default>
+                        <div class="span1 offset4 period">
+                            {{ period.name }}
+                        </div>
                     </div>
                 </div>
+                <div class="span1">{{ sumTotalClosed(period.id) }}</div>
+                <div class="span1">{{ sumSuccessfulClosed(period.id) }}</div>
+                <div class="span1">{{ calculateRow(period) }}%</div>
             </div>
-            <div class="span1">{{ sumTotalClosed(period.id) }}</div>
-            <div class="span1">{{ sumSuccessfulClosed(period.id) }}</div>
-            <div class="span1">{{ calculateRow(period) }}%</div>
-        </div>
-        <div class="text-center">
-            <input type="button" class="btn btn-large btn-inverse" value="Create Report">
+            <div class="text-center">
+                <input type="button" class="btn btn-large btn-inverse" value="Create Report">
+            </div>
         </div>
     </div>
 </body>
