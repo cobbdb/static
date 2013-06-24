@@ -53,15 +53,15 @@
         <div class="text-right row" style="font-weight: bold">
             <div class="span2 offset2">Totals</div>
             <div class="span1 period">week</div>
-            <div class="span1">{{ sumTotalClosed() }}</div>
-            <div class="span1">{{ sumSuccessfulClosed() }}</div>
-            <div class="span1">{{ calculateRow(period) }}%</div>
+            <div class="span1">{{ sumTotalClosed(Period.WEEK) }}</div>
+            <div class="span1">{{ sumSuccessfulClosed(Period.WEEK) }}</div>
+            <div class="span1">{{ sumTotals(Period.WEEK) }}%</div>
         </div>
         <div class="text-right row" style="font-weight: bold">
             <div class="span1 offset4 period">month</div>
-            <div class="span1">{{ sumTotalClosed() }}</div>
-            <div class="span1">{{ sumSuccessfulClosed() }}</div>
-            <div class="span1">{{ calculateRow(period) }}%</div>
+            <div class="span1">{{ sumTotalClosed(Period.MONTH) }}</div>
+            <div class="span1">{{ sumSuccessfulClosed(Period.MONTH) }}</div>
+            <div class="span1">{{ sumTotals(Period.MONTH) }}%</div>
         </div>
         <div class="text-center">
             <input type="button" class="btn btn-large btn-inverse" value="Create Report">

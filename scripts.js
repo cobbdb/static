@@ -41,24 +41,47 @@ function StaticController($scope) {
         $scope.programs.push(Program(name));
     });
     
-    $scope.recalculate = function (period) {
+    var totals = Program();
+    
+    $scope.Period = {
+        WEEK: 0,
+        MONTH: 1
+    };
+    
+    $scope.calculateRow = function (period) {
         try {
             var total = period.successfulClosed / period.totalClosed * 100;
             if (_(total).isFinite()) {
-                return total.roundToFixed();
+                period.successRate = total.roundToFixed();
             } else {
                 throw new Error();
             }
         } catch (err) {
-            return '-';
+            period.successRate = '-';
         }
+        return period.successRate;
     };
     
     $scope.sumTotalClosed = function (period) {
         var sum = 0;
-        $(period.class).each(function (i, val) {
-            sum += val;
+        _($scope.programs).each(function (program) {
+            sum += program.data[period].totalClosed;
         });
+        totals.data[period].totalClosed = sum;
         return sum;
+    };
+    
+    $scope.sumSuccessfulClosed = function (period) {
+        var sum = 0;
+        _($scope.programs).each(function (program) {
+            sum += program.data[period].successfulClosed;
+        });
+        totals.data[period].successfulClosed = sum;
+        return sum;
+    };
+    
+    $scope.sumTotals = function (period) {
+        period = totals.data[period];
+        return $scope.calculateRow(period);
     };
 }
