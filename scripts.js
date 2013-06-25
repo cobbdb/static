@@ -107,7 +107,7 @@ function ReportController($scope) {
                 totalClosed: program.data[Period.month].totalClosed,
                 devClosed: program.data[Period.month].successfulClosed,
                 percent: program.data[Period.month].successRate
-            }).trim()
+            })
         });
     };
 
