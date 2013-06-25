@@ -97,13 +97,34 @@ See the full report here: [collaboration:YSI YRI Reports for 2013]
         </div>
     </div>
 
-    <div id="reports" class="modal hide fade">
+    <div id="reports" class="modal hide fade" ng-controller="ReportController">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h3>Report Segments</h3>
         </div>
         <div class="modal-body">
-            <p>One fine body…</p>
+            <ul class="nav nav-tabs">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        {{ currentProgram.name }}
+                        <i class="icon-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                        <li ng-click="selectProgram(program)" ng-repeat="program in programs">
+                            <a>{{ program.name }}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="tab-content text-center">
+                <textarea id="totalsReport" disabled>{{ reportTotals(currentProgram) }}</textarea>
+                <button type="button" class="btn btn-mini" ng-click="select($event)" data-target="#totalsReport">Select</button>
+            </div>
+            <hr/>
+            <div class="tab-content text-center">
+                <textarea id="summaryReport" disabled>{{ reportSummary() }}</textarea>
+                <button type="button" class="btn btn-mini" ng-click="select($event)" data-target="#summaryReport">Select</button>
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn" data-dismiss="modal">Close</button>

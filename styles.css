@@ -2,6 +2,24 @@
     padding-top: 30px;
     margin-bottom: 0;
 }
+.nav {
+    margin-left: 20px;
+    margin-bottom: 0;
+}
+.nav-tabs {
+    border-bottom: none;
+}
+textarea {
+    resize: none;
+    width: 475px;
+    height: 100px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-bottom: 4px;
+}
+#summaryReport {
+    height: 145px;
+}
 .program-name, #summary {
     font-weight: bold;
 }
@@ -28,4 +46,7 @@ input[type="number"] {
 }
 .period {
     font-style: italic;
+}
+.dropdown-menu a:hover {
+    cursor: pointer;
 }
