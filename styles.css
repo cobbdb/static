@@ -47,6 +47,6 @@ input[type="number"] {
 .period {
     font-style: italic;
 }
-.dropdown-menu a:hover {
+.dropdown-menu a:hover, .dropdown {
     cursor: pointer;
 }
