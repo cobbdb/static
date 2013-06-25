@@ -116,7 +116,7 @@ function ReportController($scope) {
             today: thing,
             startDate: thing,
             endDate: thing,
-            totals: $scope.reportTotals(totals)
+            totals: $scope.reportTotals($scope.totals)
         });
     };
 }
