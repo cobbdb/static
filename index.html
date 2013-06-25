@@ -35,8 +35,8 @@ See the full report here: [collaboration:YSI YRI Reports for 2013]
 <%= totals %>
     </script>
 </head>
-<body ng-app>
-    <div class="container hero-unit" ng-controller="StaticController">
+<body ng-app ng-controller="StaticController">
+    <div class="container hero-unit" ng-controller="FormController">
         <div style="position: absolute">
             <h1>Static</h1>
             <p>The YSI YRI Report Generator</p>
@@ -100,7 +100,7 @@ See the full report here: [collaboration:YSI YRI Reports for 2013]
     <div id="reports" class="modal hide fade">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>Exports Menu</h3>
+            <h3>Report Segments</h3>
         </div>
         <div class="modal-body">
             <p>One fine body…</p>

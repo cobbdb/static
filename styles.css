@@ -18,6 +18,9 @@ input {
 input[type="button"] {
     margin-top: 10px !important;
 }
+input[type="number"] {
+    text-align: right;
+}
 * {
     border-radius: 0 !important;
     -webkit-border-radius: 0 !important;

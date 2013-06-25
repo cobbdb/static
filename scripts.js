@@ -41,14 +41,17 @@ function StaticController($scope) {
         'On Demand',
         'Platform'
     ];
-    
+
     $scope.programs = [];
     _(programNames).each(function (name) {
-        $scope.programs.push(Program(name));
+        var entry = Program(name);
+        $scope.programs.push(entry);
     });
-    
+
     $scope.totals = Program();
-    
+}
+
+function FormController($scope) {
     $scope.calculateRow = function (period) {
         try {
             var total = period.successfulClosed / period.totalClosed * 100;
@@ -62,7 +65,7 @@ function StaticController($scope) {
         }
         return period.successRate;
     };
-    
+
     $scope.sumTotalClosed = function (period) {
         var sum = 0;
         _($scope.programs).each(function (program) {
@@ -71,7 +74,7 @@ function StaticController($scope) {
         $scope.totals.data[period].totalClosed = sum;
         return sum;
     };
-    
+
     $scope.sumSuccessfulClosed = function (period) {
         var sum = 0;
         _($scope.programs).each(function (program) {
@@ -79,5 +82,41 @@ function StaticController($scope) {
         });
         $scope.totals.data[period].successfulClosed = sum;
         return sum;
+    };
+}
+
+function ReportController($scope) {
+    var weekTpl = _.template($('#weekTpl').text());
+    var monthTpl = _.template($('#monthTpl').text());
+    var totalsTpl = _.template($('#totalsTpl').text());
+    var summaryTpl = _.template($('#summaryTpl').text());
+
+    $scope.reportTotals = function (program) {
+        return totalsTpl({
+            week: weekTpl({
+                program: program.name,
+                startDate: thing,
+                endDate: thing,
+                totalClosed: program.data[Period.week].totalClosed,
+                devClosed: program.data[Period.week].successfulClosed,
+                percent: program.data[Period.week].successRate
+            }),
+            month: monthTpl({
+                startDate: thing,
+                endDate: thing,
+                totalClosed: program.data[Period.month].totalClosed,
+                devClosed: program.data[Period.month].successfulClosed,
+                percent: program.data[Period.month].successRate
+            })
+        });
+    };
+
+    $scope.reportSummary = function () {
+        return summaryTpl({
+            today: thing,
+            startDate: thing,
+            endDate: thing,
+            totals: $scope.reportTotals(totals)
+        });
     };
 }
