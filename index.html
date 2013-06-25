@@ -7,6 +7,7 @@
     <script src="//underscorejs.org/underscore-min.js"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="//www.eyecon.ro/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
     <script src="scripts.js"></script>
 
     <link href="//normalize-css.googlecode.com/svn/trunk/normalize.css" rel="stylesheet">
@@ -91,8 +92,21 @@ See the full report here: [collaboration:YSI YRI Reports for 2013]
                 <div class="span1">{{ calculateRow(period) }}%</div>
             </div>
             <div class="text-center">
-                <input type="button" class="btn btn-large btn-inverse" value="Create Reports">
+                <input type="button" class="btn btn-large btn-inverse" value="Create Reports" data-toggle="modal" data-target="#reports">
             </div>
+        </div>
+    </div>
+
+    <div id="reports" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Exports Menu</h3>
+        </div>
+        <div class="modal-body">
+            <p>One fine body…</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn" data-dismiss="modal">Close</button>
         </div>
     </div>
 </body>
