@@ -3,7 +3,6 @@
     margin-bottom: 0;
 }
 .nav {
-    margin-left: 20px;
     margin-bottom: 0;
 }
 .nav-tabs {
@@ -47,6 +46,6 @@ input[type="number"] {
 .period {
     font-style: italic;
 }
-.dropdown-menu a:hover, .dropdown {
-    cursor: pointer;
+.dropdown-menu a:hover, .dropdown, .hasDatepicker {
+    cursor: pointer !important;
 }

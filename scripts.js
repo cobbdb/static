@@ -8,6 +8,16 @@ Number.prototype.roundToFixed = function (radix) {
     return val;
 };
 
+// Setup the datepickers.
+$(function () {
+    $('#fromDate').datepicker({
+        dateFormat: 'M d'
+    });
+    $('#toDate').datepicker({
+        dateFormat: 'M d, yy'
+    });
+});
+
 var Period = {
     week: 0,
     month: 1
@@ -92,18 +102,21 @@ function ReportController($scope) {
     var summaryTpl = _.template($('#summaryTpl').text().trim());
 
     $scope.reportTotals = function (program) {
+        var startDate = $('#fromDate').val();
+        var endDate = $('#toDate').val();
+
         return totalsTpl({
             week: weekTpl({
                 program: program.name,
-                startDate: '<date>',
-                endDate: '<date>',
+                startDate: startDate,
+                endDate: endDate,
                 totalClosed: program.data[Period.week].totalClosed,
                 devClosed: program.data[Period.week].successfulClosed,
                 percent: program.data[Period.week].successRate
             }),
             month: monthTpl({
-                startDate: '<date>',
-                endDate: '<date>',
+                startDate: startDate,
+                endDate: endDate,
                 totalClosed: program.data[Period.month].totalClosed,
                 devClosed: program.data[Period.month].successfulClosed,
                 percent: program.data[Period.month].successRate
@@ -112,19 +125,21 @@ function ReportController($scope) {
     };
 
     $scope.reportSummary = function () {
+        var endDate = $('#toDate').datepicker('getDate');
+
         return summaryTpl({
-            today: '<date>',
-            startDate: '<date>',
-            endDate: '<date>',
+            today: $.datepicker.formatDate('M d', endDate),
+            startDate: $('#fromDate').val(),
+            endDate: $('#toDate').val(),
             totals: $scope.reportTotals($scope.totals)
         });
     };
-    
+
     $scope.currentProgram = $scope.programs[0];
     $scope.selectProgram = function (program) {
         $scope.currentProgram = program;
     };
-    
+
     $scope.select = function ($event) {
         var target = $($event.target).attr('data-target');
         $(target).select();
