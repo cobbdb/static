@@ -101,10 +101,10 @@ function ReportController($scope) {
     var totalsTpl = _.template($('#totalsTpl').text().trim());
     var summaryTpl = _.template($('#summaryTpl').text().trim());
 
-    $scope.reportTotals = function (program) {
+    $scope.reportTotals = function (program, showName) {
         var startDate = $('#fromDate').datepicker('getDate');
         var programName = '';
-        if (startDate.getDate() < 7) {
+        if (showName || startDate.getDate() < 7) {
             programName = '*' + program.name + '*';
         }
 
@@ -134,7 +134,7 @@ function ReportController($scope) {
             today: $.datepicker.formatDate('m/d', endDate),
             startDate: $('#fromDate').val(),
             endDate: $('#toDate').val(),
-            totals: $scope.reportTotals($scope.totals)
+            totals: $scope.reportTotals($scope.totals, true)
         });
     };
 
