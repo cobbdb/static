@@ -58,7 +58,7 @@ function StaticController($scope) {
         $scope.programs.push(entry);
     });
 
-    $scope.totals = Program();
+    $scope.totals = Program('Totals');
 }
 
 function FormController($scope) {
@@ -102,21 +102,24 @@ function ReportController($scope) {
     var summaryTpl = _.template($('#summaryTpl').text().trim());
 
     $scope.reportTotals = function (program) {
-        var startDate = $('#fromDate').val();
-        var endDate = $('#toDate').val();
+        var startDate = $('#fromDate').datepicker('getDate');
+        var programName = '';
+        if (startDate.getDate() < 7) {
+            programName = '*' + program.name + '*';
+        }
 
         return totalsTpl({
             week: weekTpl({
-                program: program.name,
-                startDate: startDate,
-                endDate: endDate,
+                name: programName,
+                startDate: $('#fromDate').val(),
+                endDate: $('#toDate').val(),
                 totalClosed: program.data[Period.week].totalClosed,
                 devClosed: program.data[Period.week].successfulClosed,
                 percent: program.data[Period.week].successRate
             }),
             month: monthTpl({
-                startDate: startDate,
-                endDate: endDate,
+                startDate: $.datepicker.formatDate('M 1', startDate),
+                endDate: $('#toDate').val(),
                 totalClosed: program.data[Period.month].totalClosed,
                 devClosed: program.data[Period.month].successfulClosed,
                 percent: program.data[Period.month].successRate
@@ -128,7 +131,7 @@ function ReportController($scope) {
         var endDate = $('#toDate').datepicker('getDate');
 
         return summaryTpl({
-            today: $.datepicker.formatDate('M d', endDate),
+            today: $.datepicker.formatDate('m/d', endDate),
             startDate: $('#fromDate').val(),
             endDate: $('#toDate').val(),
             totals: $scope.reportTotals($scope.totals)

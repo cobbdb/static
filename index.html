@@ -15,11 +15,11 @@
     <link href="styles.css" rel="stylesheet">
 
     <script type="text/tpl" id="weekTpl">
-| *<%= program %>* | {align:right}{{<%= startDate %> - <%= endDate %>}}{align} | {align:right}<%= totalClosed %>{align} | {align:right}<%= devClosed %>{align} | *{align:right}<%= percent %>%{align}* |
+| <%= name %>| {align:right}{{<%= startDate %> - <%= endDate %>}}{align} | {align:right}<%= totalClosed %>{align} | {align:right}<%= devClosed %>{align} | {align:right}{*}<%= percent %>%{*}{align} |
     </script>
 
     <script type="text/tpl" id="monthTpl">
-|| {align:right}total{align} | {align:right}*{{<%= startDate %> - <%= endDate %>}}*{align} | {align:right}*<%= totalClosed %>*{align} | {align:right}*<%= devClosed %>*{align} | {align:right}*<%= percent %>%*{align} |
+|| {align:right}total{align} | {align:right}{*}{{<%= startDate %> - <%= endDate %>}}{*}{align} | {align:right}{*}<%= totalClosed %>{*}{align} | {align:right}{*}<%= devClosed %>{*}{align} | {align:right}{*}<%= percent %>%{*}{align} |
     </script>
 
     <script type="text/tpl" id="totalsTpl">
@@ -29,7 +29,7 @@
 
     <script type="text/tpl" id="summaryTpl">
 * <%= today %>: You Ship It, You Run It report update for the week of *<%= startDate %>* to *<%= endDate %>*.
-See the full report here: [collaboration:YSI YRI Reports for 2013]
+See the full report here: [collaboration:YSI YRI Reports for 2013] -
 || Program || Period || Total Closed || Closed by Devs. || Success Rate ||
 <%= totals %>
     </script>
