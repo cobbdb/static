@@ -119,7 +119,7 @@ function ReportController($scope) {
                 percent: program.data[Period.week].successRate
             }),
             month: monthTpl({
-                startDate: $.datepicker.formatDate('M 1', startDate),
+                startDate: $.datepicker.formatDate('M 1', endDate),
                 endDate: $('#toDate').val(),
                 totalClosed: program.data[Period.month].totalClosed,
                 devClosed: program.data[Period.month].successfulClosed,
