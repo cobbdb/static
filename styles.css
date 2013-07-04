@@ -5,6 +5,9 @@
 .nav {
     margin-bottom: 0;
 }
+#summaryBar {
+    margin: 5px;
+}
 .nav-tabs {
     border-bottom: none;
 }
