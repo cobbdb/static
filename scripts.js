@@ -46,10 +46,10 @@ function StaticController($scope) {
     var programNames = [
         'Janus',
         'Mobile',
-        'Revenue',
-        'Video',
         'On Demand',
-        'Platform'
+        'Platform',
+        'Revenue',
+        'Video'
     ];
 
     $scope.programs = [];
