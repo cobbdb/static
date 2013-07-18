@@ -2,6 +2,9 @@
     padding-top: 30px;
     margin-bottom: 0;
 }
+.ui-widget-header, .ui-datepicker-calendar td a {
+    background: #eee !important;
+}
 .nav {
     margin-bottom: 0;
 }
