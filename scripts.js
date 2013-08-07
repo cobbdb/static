@@ -105,7 +105,7 @@ function ReportController($scope) {
         var startDate = $('#fromDate').datepicker('getDate');
         var endDate = $('#toDate').datepicker('getDate');
         var programName = '';
-        if (endDate.getDate() < 7) {
+        if (endDate.getDate() <= 7) {
             programName = '*' + program.name + '*';
         }
 
