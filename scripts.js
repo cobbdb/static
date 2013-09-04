@@ -100,6 +100,7 @@ function ReportController($scope) {
     var monthTpl = _.template($('#monthTpl').text().trim());
     var totalsTpl = _.template($('#totalsTpl').text().trim());
     var summaryTpl = _.template($('#summaryTpl').text().trim());
+    var firstWeekTpl = _.template($('#firstWeekTpl').text().trim());
 
     $scope.reportTotals = function (program) {
         var startDate = $('#fromDate').datepicker('getDate');
@@ -109,7 +110,7 @@ function ReportController($scope) {
             programName = '*' + program.name + '*';
         }
 
-        return totalsTpl({
+        var totals = totalsTpl({
             week: weekTpl({
                 name: programName,
                 startDate: $('#fromDate').val(),
@@ -126,6 +127,14 @@ function ReportController($scope) {
                 percent: program.data[Period.month].successRate
             })
         });
+
+        // Add a line break if the first week of the month.
+        if (endDate.getDate() <= 7) {
+            return firstWeekTpl({
+                summary: totals
+            });
+        }
+        return totals;
     };
 
     $scope.reportSummary = function () {
