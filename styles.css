@@ -8,6 +8,9 @@
 .nav {
     margin-bottom: 0;
 }
+.ui-state-hover {
+    background: none !important;
+}
 #summaryBar {
     margin: 5px;
 }
