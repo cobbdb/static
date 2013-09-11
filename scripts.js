@@ -44,12 +44,12 @@ function Program(name) {
 
 function StaticController($scope) {
     var programNames = [
-        'Janus',
-        'Mobile',
+        'Newspaper',
         'On Demand',
         'Platform',
+        'Radio',
         'Revenue',
-        'Video'
+        'TV'
     ];
 
     $scope.programs = [];
